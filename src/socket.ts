@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 
-const io = new Server(3001, {
+export const io = new Server(3001, {
     cors: {
         origin: '*',
     },
@@ -14,4 +14,8 @@ io.on('connect', (socket) => {
     socket.on('disconnect', () => {
         console.log(`Client disconnected: ${socket.id}`);
     });
+
+    socket.on('message', (mensagem) => {
+        console.log('Mensagem', mensagem)
+    })
 });
