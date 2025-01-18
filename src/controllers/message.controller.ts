@@ -1,7 +1,9 @@
-import { io } from '../socket'
+import { io } from '../index';
 
 export const Message = (req, res) => {
-    console.log({bodyteste: req.body.message})
-    io.send('message', req.body.message)
-    res.send('teste')
-}
+  const { message } = req.body;
+
+  io.emit('message', { text: message });
+
+  return res.status(200).json({ message });
+};
